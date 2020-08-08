@@ -18,7 +18,7 @@ const Edit = function (props) {
 	
 	useEffect(() => {
     (async () => {
-      const resResp = await Axios.get(`/resources/${id}`);
+      const resResp = await Axios.get(`/api/resources/${id}`);
       if (resResp.status === 200) setInputs(resResp.data);
     })();
   }, []);
@@ -28,7 +28,7 @@ const Edit = function (props) {
 	event.preventDefault();
 	try{
 		
-	const resp = await Axios.post('/resources/update',inputs);
+	const resp = await Axios.post('/api/resources/update',inputs);
 	if(resp.status === 200)
 	{
         toast("New Note updated Successfully", {

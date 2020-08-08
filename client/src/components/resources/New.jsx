@@ -18,7 +18,7 @@ const New = function () {
 	event.preventDefault();
 	try{
 		
-	const resp = await Axios.post('/resources',inputs);
+	const resp = await Axios.post('/api/resources',inputs);
 	if(resp.status === 200)
 	{
         toast("New Note Created Successfully", {

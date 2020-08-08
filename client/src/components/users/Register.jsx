@@ -21,7 +21,7 @@ const Register = function () {
 	event.preventDefault();
 	try{
 		
-	const resp = await Axios.post('/users',inputs);
+	const resp = await Axios.post('/api/users',inputs);
 	if(resp.status === 200)
 	{
         toast("You have been successfully registered", {

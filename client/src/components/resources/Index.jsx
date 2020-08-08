@@ -16,7 +16,7 @@ const Index = function ({user}) {
 	
 
 	const getResour = async () => {
-		const reso = await Axios.get('/resources');
+		const reso = await Axios.get('/api/resources');
 		console.log(reso);
 		if( reso.status === 200 ) setResour(reso.data);
 		
@@ -24,7 +24,7 @@ const Index = function ({user}) {
 	
 	const deleteResource = async resource => {
     try {
-      const resp = await Axios.post('/resources/delete', {
+      const resp = await Axios.post('/api/resources/delete', {
         id: resource._id
       });
 		toast("Note deleted Successfully", {

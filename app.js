@@ -82,26 +82,17 @@ app.use('/', (req, res, next) => {
 */
 
 const routes = require('./routes.js');
-app.use('/', routes);
+app.use('/api', routes);
 
 app.get('/test', (req,res) => {
 	res.status(200).json({message: 'Hello World'});
 });
 
 
-const clientRoot = path.join(__dirname, '/client/build');
-app.use((req,res,next) => {
-	if(req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.'))
-	{
-		res.sendFile('index.html' , {clientRoot});
-	}
-	else{
-		next();
-	}
+app.use(express.static(path.join(__dirname, 'client/public')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
 });
-
-app.use(express.static("public"));
-
 
 /*
   Step 8: Start the server

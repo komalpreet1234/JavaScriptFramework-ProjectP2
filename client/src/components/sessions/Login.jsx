@@ -16,7 +16,7 @@ const Login = ({setUser}) => {
 		event.preventDefault();
 		try
 		{
-		const resp = await Axios.post('/authenticate', inputs);
+		const resp = await Axios.post('/api/authenticate', inputs);
 		if(resp.status === 200) {
 		setUser(resp.data.user);
 		toast("You have been successfully Logged in",{
