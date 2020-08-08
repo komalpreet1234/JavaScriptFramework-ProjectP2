@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 const Edit = function (props) {
 	
 	const id = props.location.state.id;
+	
 	const [inputs, setInputs] = useState({
 		Title: '',
 		Subject: '',
