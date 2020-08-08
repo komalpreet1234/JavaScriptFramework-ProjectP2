@@ -35,7 +35,10 @@ const ResourceSchema = new mongoose.Schema({
 	required: true
   },
 },{
-    timestamps: true
+    timestamps: true,
+	toJSON: {
+    getters: true
+  }
  
 });
 

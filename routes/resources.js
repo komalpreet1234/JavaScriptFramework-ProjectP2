@@ -2,8 +2,7 @@ const { new: _new, index, show, create, edit, update, delete: _delete } = requir
 
 function auth (req, res, next) {
   if (!req.isAuthenticated()) {
-    req.flash('danger', 'Login Needed');
-    return res.redirect('/login');
+    return res.status(401).json({message: "You must authenticate before this api call"});
   }
   next();
 }

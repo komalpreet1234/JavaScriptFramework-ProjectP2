@@ -10,11 +10,29 @@ exports.new = (req, res) => {
 
 // Step 1: Create an action that will authenticate the user using Passport
 exports.create = (req, res, next) => {
-	passport.authenticate('local', {
-    successRedirect: '/resources',
-    successFlash: 'Logged in',
-    failureRedirect: '/login',
-    failureFlash: 'Invalid credentials'
+  passport.authenticate('local', (err, user) => {
+    if (err || !user) return res.status(401).json({
+      status: 'failed',
+      message: 'Not authorized',
+      error: err
+    });
+
+    req.login(user, err => {
+      if (err) return res.status(401).json({
+        status: 'failed',
+        message: 'Not authorized',
+        error: err
+      });
+      return res.status(200).json({
+        status: 'success',
+        message: 'Logged in successfully',
+        user: {
+          _id: user._id,
+          fullname: user.fullname,
+          email: user.email
+        }
+      })
+    })
   })(req, res, next);
 };
 
